@@ -371,6 +371,10 @@ jobs:
           environment:
             FOUNDRY_PROFILE: ci
           working_directory: packages/contracts-bedrock
+      - run:
+          name: Check addresses.json is up to date
+          command: pnpm nx build && pnpm generate:addresses:check
+          working_directory: packages/contracts-bedrock
 
   contracts-bedrock-checks:
     docker:
