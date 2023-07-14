@@ -268,30 +268,45 @@ importers:
         specifier: ^5.7.0
         version: 5.7.1
     devDependencies:
+      '@types/glob':
+        specifier: ^8.1.0
+        version: 8.1.0
+      '@types/node':
+        specifier: ^16.18.38
+        version: 16.18.38
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.60.1
         version: 5.60.1(@typescript-eslint/parser@5.60.1)(eslint@8.43.0)(typescript@4.9.3)
       '@typescript-eslint/parser':
         specifier: ^5.60.1
         version: 5.60.1(eslint@8.43.0)(typescript@4.9.3)
+      abitype:
+        specifier: ^0.9.0
+        version: 0.9.0(typescript@4.9.3)(zod@3.20.2)
       ds-test:
         specifier: github:dapphub/ds-test#c9ce3f25bde29fc5eb9901842bf02850dfd2d084
         version: github.com/dapphub/ds-test/c9ce3f25bde29fc5eb9901842bf02850dfd2d084
       forge-std:
         specifier: github:foundry-rs/forge-std#e8a047e3f40f13fa37af6fe14e6e06283d9a060e
         version: github.com/foundry-rs/forge-std/e8a047e3f40f13fa37af6fe14e6e06283d9a060e
+      glob:
+        specifier: ^7.2.3
+        version: 7.2.3
       solhint:
         specifier: ^3.4.1
         version: 3.4.1
       solhint-plugin-prettier:
         specifier: ^0.0.5
         version: 0.0.5(prettier-plugin-solidity@1.1.3)(prettier@2.8.8)
-      ts-node:
-        specifier: ^10.9.1
-        version: 10.9.1(@types/node@12.20.55)(typescript@4.9.3)
+      tsx:
+        specifier: ^3.12.7
+        version: 3.12.7
       typescript:
         specifier: ^4.9.3
         version: 4.9.3
+      zod:
+        specifier: ^3.11.6
+        version: 3.20.2
 
   packages/contracts-periphery:
     dependencies:
@@ -3521,6 +3536,13 @@ packages:
       '@types/node': 12.20.55
     dev: true
 
+  /@types/glob@8.1.0:
+    resolution: {integrity: sha512-IO+MJPVhoqz+28h1qLAcBEH2+xHMK6MTyHJc7MTnnYb6wsoLR29POVGJ7LycmVXIqyy/4/2ShP5sUwTXuOwb/w==}
+    dependencies:
+      '@types/minimatch': 5.1.2
+      '@types/node': 12.20.55
+    dev: true
+
   /@types/is-ci@3.0.0:
     resolution: {integrity: sha512-Q0Op0hdWbYd1iahB+IFNQcWXFq4O0Q5MwQP7uN0souuQ4rPg1vEYcnIOfr1gY+M+6rc8FGoRaBO1mOOvL29sEQ==}
     dependencies:
@@ -3591,7 +3613,7 @@ packages:
   /@types/morgan@1.9.3:
     resolution: {integrity: sha512-BiLcfVqGBZCyNCnCH3F4o2GmDLrpy0HeBVnNlyZG4fo88ZiE9SoiBe3C+2ezuwbjlEyT+PDZ17//TAlRxAn75Q==}
     dependencies:
-      '@types/node': 17.0.21
+      '@types/node': 12.20.55
     dev: true
 
   /@types/node-fetch@2.5.10:
@@ -3611,6 +3633,10 @@ packages:
 
   /@types/node@12.20.55:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
+
+  /@types/node@16.18.38:
+    resolution: {integrity: sha512-6sfo1qTulpVbkxECP+AVrHV9OoJqhzCsfTNp5NIG+enM4HyM3HvZCO798WShIXBN0+QtDIcutJCjsVYnQP5rIQ==}
+    dev: true
 
   /@types/node@17.0.21:
     resolution: {integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==}
@@ -3654,7 +3680,7 @@ packages:
   /@types/pino@6.3.11:
     resolution: {integrity: sha512-S7+fLONqSpHeW9d7TApUqO6VN47KYgOXhCNKwGBVLHObq8HhaAYlVqUNdfnvoXjCMiwE5xcPm/5R2ZUh8bgaXQ==}
     dependencies:
-      '@types/node': 17.0.21
+      '@types/node': 12.20.55
       '@types/pino-pretty': 4.7.1
       '@types/pino-std-serializers': 2.4.1
       sonic-boom: 2.1.0
@@ -4008,6 +4034,21 @@ packages:
       typescript: '>=5.0.4'
       zod: ^3 >=3.19.1
     peerDependenciesMeta:
+      zod:
+        optional: true
+    dependencies:
+      typescript: 4.9.3
+      zod: 3.20.2
+    dev: true
+
+  /abitype@0.9.0(typescript@4.9.3)(zod@3.20.2):
+    resolution: {integrity: sha512-6T0BC3Yo3pIZ1kABVRokXYZULob3lWEfcJosJsrCAxfKVeyXvUMGIeJADgwHioccz/mYFye2vR3eq0sNAtBk2w==}
+    peerDependencies:
+      typescript: '>=5.0.4'
+      zod: ^3 >=3.19.1
+    peerDependenciesMeta:
+      typescript:
+        optional: true
       zod:
         optional: true
     dependencies:
@@ -17477,37 +17518,6 @@ packages:
       ts-node: 7.0.1
     optionalDependencies:
       tsconfig-paths: 3.14.2
-    dev: true
-
-  /ts-node@10.9.1(@types/node@12.20.55)(typescript@4.9.3):
-    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
-    hasBin: true
-    peerDependencies:
-      '@swc/core': '>=1.2.50'
-      '@swc/wasm': '>=1.2.50'
-      '@types/node': '*'
-      typescript: '>=2.7'
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      '@swc/wasm':
-        optional: true
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.8
-      '@tsconfig/node12': 1.0.9
-      '@tsconfig/node14': 1.0.1
-      '@tsconfig/node16': 1.0.2
-      '@types/node': 12.20.55
-      acorn: 8.9.0
-      acorn-walk: 8.2.0
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 4.9.3
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
     dev: true
 
   /ts-node@10.9.1(@types/node@12.20.55)(typescript@4.9.5):
