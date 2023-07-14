@@ -138,7 +138,7 @@ if (!glob.sync('node_modules/*').length) {
   )
 }
 
-const deployments = {
+const bedrockDeployments = {
   [1]: glob.sync(
     `node_modules/@eth-optimism/contracts-bedrock/deployments/${chains[1]}/*.json`
   ),
@@ -152,12 +152,38 @@ const deployments = {
     `node_modules/@eth-optimism/contracts-bedrock/deployments/${chains[420]}/*.json`
   ),
 }
-
-Object.entries(deployments).forEach(([chain, deploymentFiles]) => {
+const peripheryDeployments = {
+  [1]: glob.sync(
+    `node_modules/@eth-optimism/contracts-periphery/deployments/${chains[1]}/*.json`
+  ),
+  [10]: glob.sync(
+    // contracts-periphery has inconsistent naming and names optimism optimism instead of optimism-mainnet
+    `node_modules/@eth-optimism/contracts-periphery/deployments/optimism/*.json`
+  ),
+  [5]: glob.sync(
+    `node_modules/@eth-optimism/contracts-periphery/deployments/${chains[5]}/*.json`
+  ),
+  [420]: glob.sync(
+    `node_modules/@eth-optimism/contracts-periphery/deployments/${chains[420]}/*.json`
+  ),
+}
+console.log(peripheryDeployments)
+Object.entries(bedrockDeployments).forEach(([chain, deploymentFiles]) => {
   if (deploymentFiles.length === 0) {
-    throw new Error(`No deployments found for ${chains[chain]}`)
+    throw new Error(`No bedrock deployments found for ${chains[chain]}`)
   }
 })
+Object.entries(peripheryDeployments).forEach(([chain, deploymentFiles]) => {
+  if (deploymentFiles.length === 0) {
+    throw new Error(`No periphery deployments found for ${chains[chain]}`)
+  }
+})
+const deployments = {
+  [1]: [...bedrockDeployments[1], ...peripheryDeployments[1]],
+  [10]: [...bedrockDeployments[10], ...peripheryDeployments[10]],
+  [5]: [...bedrockDeployments[5], ...peripheryDeployments[5]],
+  [420]: [...bedrockDeployments[420], ...peripheryDeployments[420]],
+}
 
 const getWagmiContracts = (deploymentFiles: string[]) =>
   deploymentFiles.map((artifactPath) => {

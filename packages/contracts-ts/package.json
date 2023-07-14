@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "build": "tsup",
-    "generate": "nx build @eth-optimism/contracts-bedrock && wagmi generate && pnpm build && pnpm lint:fix",
+    "generate": "nx build @eth-optimism/contracts-bedrock && nx build @eth-optimism/contracts-periphery && wagmi generate && pnpm build && pnpm lint:fix",
     "generate:check": "pnpm generate && git diff --exit-code ./addresses.json && git diff --exit-code ./abis.json",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
@@ -45,7 +45,8 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@eth-optimism/contracts-bedrock": "workspace:0.15.0",
+    "@eth-optimism/contracts-bedrock": "workspace:*",
+    "@eth-optimism/contracts-periphery": "workspace:*",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react-hooks": "^8.0.1",
     "@types/glob": "^8.1.0",
