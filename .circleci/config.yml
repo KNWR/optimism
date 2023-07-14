@@ -609,9 +609,33 @@ jobs:
           name: Test
           command: pnpm test:coverage
           working_directory: packages/<<parameters.package_name>>
+          # env variables
+          
       - run:
           name: Upload coverage
           command: codecov --verbose --clean --flags <<parameters.coverage_flag>>
+
+  fee-estimation:
+    docker:
+      - image: us-docker.pkg.dev/oplabs-tools-artifacts/images/ci-builder:latest
+    resource_class: large
+    steps:
+      - checkout
+      - attach_workspace: { at: "." }
+      - restore_cache:
+          name: Restore pnpm Package Cache
+          keys:
+            - pnpm-packages-v2-{{ checksum "pnpm.lock.yaml" }}
+      - check-changed:
+          patterns: sdk,contracts-bedrock,contracts
+      - run:
+          name: Typecheck
+          command: pnpm nx typecheck
+          working_directory: packages/fee-estimation
+      - run:
+          name: Lint
+          command: pnpm nx lint
+          working_directory: packages/fee-estimation
 
   contracts-ts-tests:
     docker:
@@ -1238,6 +1262,13 @@ workflows:
           coverage_flag: contracts-ts-tests
           package_name: contracts-ts
           dependencies: '(contracts-bedrock|contracts-ts)'
+          requires:
+            - pnpm-monorepo
+      - js-lint-test:
+          name: fee-estimation
+          coverage_flag: fee-estimation-tests
+          package_name: fee-estimation
+          dependencies: '(contracts-bedrock|contracts-ts|fee-estimation|contracts-periphery)'
           requires:
             - pnpm-monorepo
       - js-lint-test:

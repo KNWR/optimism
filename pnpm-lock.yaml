@@ -591,6 +591,67 @@ importers:
         specifier: ^3.12.7
         version: 3.12.7
 
+  packages/fee-estimation:
+    dependencies:
+      '@eth-optimism/contracts-ts':
+        specifier: workspace:^
+        version: link:../contracts-ts
+      '@testing-library/react':
+        specifier: ^14.0.0
+        version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+      viem:
+        specifier: ^0.3.30
+        version: 0.3.30(typescript@4.9.5)
+      wagmi:
+        specifier: '>1.0.0'
+        version: 1.0.1(react-dom@18.2.0)(react@18.2.0)(typescript@4.9.5)(viem@0.3.30)
+    devDependencies:
+      '@testing-library/jest-dom':
+        specifier: ^5.16.5
+        version: 5.16.5
+      '@testing-library/react-hooks':
+        specifier: ^8.0.1
+        version: 8.0.1(react-dom@18.2.0)(react@18.2.0)
+      '@vitest/coverage-istanbul':
+        specifier: ^0.33.0
+        version: 0.33.0(vitest@0.33.0)
+      '@wagmi/cli':
+        specifier: ^1.3.0
+        version: 1.3.0(@wagmi/core@1.3.7)(typescript@4.9.5)(wagmi@1.0.1)
+      '@wagmi/core':
+        specifier: ^1.3.7
+        version: 1.3.7(react@18.2.0)(typescript@4.9.5)(viem@0.3.30)
+      abitype:
+        specifier: ^0.9.0
+        version: 0.9.0(typescript@4.9.5)
+      isomorphic-fetch:
+        specifier: ^3.0.0
+        version: 3.0.0
+      jest-dom:
+        specifier: link:@types/@testing-library/jest-dom
+        version: link:@types/@testing-library/jest-dom
+      jsdom:
+        specifier: ^22.1.0
+        version: 22.1.0
+      tsup:
+        specifier: ^7.1.0
+        version: 7.1.0(typescript@4.9.5)
+      typescript:
+        specifier: ^4.9.3
+        version: 4.9.5
+      vite:
+        specifier: ^4.4.3
+        version: 4.4.3(@types/node@12.20.20)
+      vitest:
+        specifier: ^0.33.0
+        version: 0.33.0(jsdom@22.1.0)
+
   packages/hardhat-deploy-config:
     devDependencies:
       ethers:
@@ -18418,14 +18479,6 @@ packages:
     dependencies:
       bn.js: 5.2.1
 
-  /rollup@3.25.1:
-    resolution: {integrity: sha512-tywOR+rwIt5m2ZAWSe5AIJcTat8vGlnPFAv15ycCrw33t6iFsXZ6mzHVFh2psSjxQPmI+xgzMZZizUAukBI4aQ==}
-    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
   /rollup@3.26.2:
     resolution: {integrity: sha512-6umBIGVz93er97pMgQO08LuH3m6PUb3jlDUUGFsNJB6VgTCUaDFpupf5JfU30529m/UKOgmiX+uY6Sx8cOYpLA==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
@@ -20453,7 +20506,7 @@ packages:
       joycon: 3.1.1
       postcss-load-config: 4.0.1
       resolve-from: 5.0.0
-      rollup: 3.25.1
+      rollup: 3.26.2
       source-map: 0.8.0-beta.0
       sucrase: 3.32.0
       tree-kill: 1.2.2

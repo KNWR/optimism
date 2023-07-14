@@ -12,7 +12,6 @@ The main entrypoint exports constants related to contracts bedrock as const. As 
 
 - Exports contract abis.
 - Exports contract addresses
-- [gasEstimation utils](./GasEstimation.md)
 
 ```typescript
 import {
@@ -30,8 +29,6 @@ import { addresses } from '@eth-optimism/contracts-ts'
 
 console.log(addresses.l2OutputOracle[10])
 ```
-
-- See [GasEstimation.md](./GasEstimation.md) for more detailed info on the gasEstimation utilities
 
 #### @eth-optimism/contracts-ts/react
 
